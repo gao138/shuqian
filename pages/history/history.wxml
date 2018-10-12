@@ -1,0 +1,22 @@
+<!--history.wxml-->
+<view class="container">
+  <!-- header start -->
+  <view class='header'>
+    <view class='header'>
+      <header style="padding-top:{{marginTop}};">
+        <view class='back' bindtap='back'>
+          <image src='./image/icon_fanhuixq@3x.png'></image>
+        </view>
+        <span>历史记录</span>
+      </header>
+    </view>
+  </view>
+  <view class='lists'>
+    <view class='wrap'>
+      <view class='lis' wx:for='{{hisList}}' wx:key='index'>
+        <text>{{item.updated}}</text>
+        <text>{{item.count_sum}}根</text>
+      </view>
+    </view>
+  </view>
+</view>

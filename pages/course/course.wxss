@@ -1,0 +1,59 @@
+/**course.wxss**/
+page {
+  background: #f0f0f0;
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.container .header {
+  background: #fc5c1e;
+  color: #fff;
+}
+
+.container .header {
+  background: #fc5c1e;
+}
+
+.container .header header {
+  justify-content: flex-start;
+}
+
+.container .header image {
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.container .header .back image {
+  width: 20rpx;
+  margin: 0 20rpx;
+}
+
+.container .header header span {
+  display: block;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-weight: normal;
+}
+.container .step {
+  overflow-y: auto;
+  flex: 1;
+  position: relative;
+}
+.container .step image{
+  display: block;
+  margin: 0 auto;
+  width: 684rpx;
+  height: 684rpx;
+  margin-bottom: 10rpx;
+}

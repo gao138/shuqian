@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- header start -->
+  <view class='header'>
+    <view class='header'>
+      <header style="padding-top:{{marginTop}};">
+        <view class='back' bindtap='back'>
+          <image src='./image/icon_fanhuixq@3x.png'></image>
+        </view>
+        <span>报表</span>
+      </header>
+    </view>
+  </view>
+  <!-- 图表 -->
+  <view class='dataWrap'>
+    <view class='box' id='myCanvas'>
+      <navigator url='../history/history'>
+        <view class='fenx'>
+          <image src='./image/icon_lsjlxq@3x.png'></image>
+        </view>
+      </navigator>
+      <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas"></canvas>
+    </view>
+    <view class='allNum'>总根数:
+      <span>{{allNum}}</span>
+    </view>
+  </view>
+  <view class='storeId_list'>
+    <view class="page_bd">
+      <view class="body_head" bindtap="showitem">
+        <span>{{selected}}</span>
+        <image src='{{down_up}}'></image>
+      </view>
+      <view class='list'>
+        <view class="{{open?'display_show':'display_none'}}" bindtap="storeAll">全部</view>
+        <view class="{{open?'display_show':'display_none'}}" wx:for="{{storeArr}}" wx:key="index" data-store='{{item}}' bindtap='storeOne'>{{item.store_name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

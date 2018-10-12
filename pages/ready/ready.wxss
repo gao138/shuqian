@@ -1,0 +1,74 @@
+/**ready.wxss**/
+ page{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+} 
+.container .header{
+  background: #fc5c1e;
+}
+.container .content{
+  background: #b2b2b2;
+}
+.container .content .boxImg{
+  width: 684rpx;
+  height: 684rpx;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 50%;
+  margin-top: 192rpx;
+  background: #fff;
+  position: relative;
+}
+
+.container .content .boxImg .image,
+.container .content .boxImg .image image{
+  width: 658rpx;
+  height: 658rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+}
+.container .content .boxImg .image canvas{
+  width: 684px;
+  height: 684px;
+  position: absolute;
+  top: 99999px;
+}
+.container .content .btns{
+  margin-top: 120rpx;
+  display: flex;
+  justify-content: center;
+}
+.container .content .btns text{
+  width: 236rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 12rpx;
+}
+.container .content .btns text:first-child{
+  background: #2a91fe;
+  margin-right: 84rpx;
+}
+.container .content .btns text:last-child{
+  background: #fe980f;
+}

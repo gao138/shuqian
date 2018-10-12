@@ -1,0 +1,115 @@
+page,.container {
+  display: flex;
+  flex-direction: column;
+  background: #333;
+  height: 100%;
+  font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+}
+.container .header{
+  background: #333;
+}
+.container .header header{
+  justify-content: flex-start;
+}
+.container .header image{ 
+  display: block;
+  width: 44rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.container .content{
+  overflow: hidden;
+  flex: 1;
+  position: relative;
+}
+.container .content camera{
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.container .content camera .wrap{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: transparent;
+  /* background-color:rgba(0, 0, 0, 0.5); */
+}
+.container .content camera .wrap .window{
+  width: 684rpx;
+  height: 684rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 50%;
+  background-color:rgba(0, 0, 0, 0.1);
+}
+
+.container .content camera .wrap .flashBtn{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.container .content .mineBtn{
+  width: 140rpx;
+  height: 100rpx;
+  background: #fff;
+  position: absolute;
+  right: 0rpx;
+  bottom: 62rpx;
+  background: transparent;
+}
+
+.container .content .mineBtn  cover-image{
+  width: 140rpx;
+  height: 100rpx;
+}
+.container .footer{
+  display: flex;
+  justify-content: space-between;
+  background: #474747;
+  height: 164rpx;
+}
+.container .footer view{
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  height: 100%;
+  line-height: 100rpx;
+}
+.container .footer view span,
+.container .footer view a{
+  display: block;
+  width: 100%;
+  height: 50%;
+  line-height: 82rpx;
+  color: #fff;
+  font-size: 28rpx;
+}
+.container .footer view:first-child span{
+  background: url(https://qcloudtest-1255385697.cos.ap-guangzhou.myqcloud.com/1533086655901-Ux_9Kkqmd.png) no-repeat center bottom;
+  background-size: 40rpx 40rpx;
+}
+.container .footer view:last-child span{
+  background: url(https://qcloudtest-1255385697.cos.ap-guangzhou.myqcloud.com/1533086610441-d8iMq9TaE.png) no-repeat center bottom;
+  background-size: 52rpx 44rpx;
+}
+

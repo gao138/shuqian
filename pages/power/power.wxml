@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+<view class='header'>
+    <header style="padding-top:{{marginTop}};">
+      <span>授权</span>
+    </header>
+  </view>
+<!-- btn -->
+    <button class='btn' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 授权登录 </button>
+</view>

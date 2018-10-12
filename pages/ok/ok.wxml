@@ -1,0 +1,18 @@
+<!--ready.wxml-->
+<view class="container">
+  <view class='header'>
+    <header style="padding-top:{{marginTop}};">
+      <view class='back' bindtap='back'><image src='./image/icon_fanhuixq@3x.png'></image></view>
+      <view class='err' bindtap='err'><image src='./image/icon_baocuoxq@3x.png'></image></view>
+    </header>
+  </view>
+  <view class='content'>
+    <view class='allNum'>{{allNum}}根</view>
+    <view class='boxImg'>
+      <image src="{{src}}" mode='aspectFill'></image>
+    </view>
+    <view class='btns'>
+      <text bindtap='btnYes'>确认</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<!--ready.wxml-->
+<view class="container">
+   <view class='header'>
+      <header style="padding-top:{{marginTop}};">
+        
+      </header>
+    </view>
+  <view class='content'>
+    <view class='boxImg'>   
+      <view class='image'>
+        <image src="{{src}}" mode='aspectFill'></image>
+        <canvas canvas-id="cover-preview"></canvas>
+      </view>
+    </view>
+    <view class='btns'>
+      <text bindtap='btnYes'>确认</text>
+      <text bindtap='btnNo'>取消</text>
+    </view>
+  </view>
+</view>

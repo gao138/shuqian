@@ -1,0 +1,156 @@
+/**errerData.wxss**/
+
+page {
+  background: #f0f0f0;
+}
+
+.container .header {
+  background: #fc5c1e;
+  color: #fff;
+}
+
+.container .header {
+  background: #fc5c1e;
+}
+
+.container .header header {
+  justify-content: flex-start;
+}
+
+.container .header image {
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+  z-index: 10;
+}
+.container .header .back,
+.container .header .fenx{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container .header .back image {
+  width: 20rpx;
+  margin: 0 20rpx;
+}
+
+.container .header header span {
+  display: block;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-weight: normal;
+}
+
+.container .dataWrap {
+  background: #fff;
+  width: 672rpx;
+  height: 452rpx;
+  border-radius: 14rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.container .dataWrap .fenx{
+  position: absolute;
+  right: 50rpx;
+  top: 50rpx;
+  z-index: 10;
+}
+.container .dataWrap .fenx image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.container .dataWrap view {
+  flex: 1;
+}
+
+.container .dataWrap .box {
+  background: #6fc4fb;
+  margin: 33rpx auto 0;
+}
+
+.container .dataWrap .box canvas {
+  width: 612rpx;
+  height: 328rpx;
+}
+
+.container .dataWrap .allNum {
+  padding: 30rpx 0;
+  text-indent: 28rpx;
+  font-size: 28rpx;
+}
+
+.container .dataWrap .allNum span {
+  color: #fc5c1e;
+  vertical-align: baseline;
+}
+
+.container .storeId_list{
+  background: #fff;
+  width: 672rpx;
+  height: 452rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+}
+.container .storeId_list .page_bd{
+   
+}
+.container .storeId_list .body_head{
+    line-height: 70rpx;
+    height: 70rpx;
+    color: #333;
+    font-size: 26rpx;
+    padding: 0 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container .storeId_list .body_head image{
+  width: 16rpx;
+  height: 12rpx;
+}
+.container .storeId_list .display_show{
+    display: block;
+    line-height: 70rpx;
+    height: 70rpx;
+    color: #333;
+    font-size: 26rpx;
+    padding: 0 20rpx;
+}
+.container .storeId_list .list{
+  height: 372rpx;
+  overflow-y: auto;
+}
+.container .storeId_list .display_show:hover{
+  background: #fc5c1e;
+  color: #fff;
+}
+.display_none{
+    display: none;
+}
+
+button{
+  width: 100%;
+  height: 100%;
+  border-radius:0;
+  overflow:hidden;
+  background-color:transparent;
+  border: 1px solid transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+button::after{ border: none; }
+button:hover{
+  background: transparent;
+}

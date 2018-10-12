@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/details/details",
+    "pages/mine/mine",
+    "pages/ok2/ok2",
+    "pages/login/login",
+    "pages/course/course",
+    "pages/power/power",
+    "pages/history/history",
+    "pages/errerData/errerData",
+    "pages/ok/ok",
+    "pages/ready/ready",
+    "pages/errer/errer"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  }
+}

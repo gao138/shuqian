@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='header'>
+    <header>
+      <i class="iconfont icon-back goback"></i>
+      <span>Al助手</span>
+    </header>
+  </view>
+  <view class='content'>
+    <view class='wrap'>
+       <view class='box' wx:for="{{gArray}}" wx:key="index" data-gourl='{{item.gourl}}' bindtap="toDetails">
+          <image src='{{item.bgurl}}' mode='aspectFit'></image>
+          <view class='cont'>
+            <span><image src='{{item.icon}}' style='width:{{item.width}};height:{{item.height}};margin-bottom:{{item.mbottom}}'></image></span> 
+            <text>{{item.text}}</text> 
+          </view>
+       </view>
+    </view>
+  </view>
+</view>

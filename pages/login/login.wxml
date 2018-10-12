@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+<view class='header'>
+    <header style="padding-top:{{marginTop}};">
+      <span>登录</span>
+    </header>
+  </view>
+<!-- btn -->
+    <button class='btn' bindtap='login'> 登录 </button>
+</view>

@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- header start -->
+  <view class='header'>
+    <view class='header'>
+      <header style="padding-top:{{marginTop}};">
+        <view class='back' bindtap='back'>
+          <image src='./image/icon_fanhuixq@3x.png'></image>
+        </view>
+        <span>教程</span>
+      </header>
+    </view>
+  </view>
+  <view class='step'>
+      <image src='http://thyrsi.com/t6/372/1537253138x-1404775437.png'></image>
+      <image src='http://thyrsi.com/t6/372/1537253518x-1404817844.png'></image>
+  </view>
+</view>

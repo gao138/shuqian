@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<!--ready.wxml-->
+<view class="container">
+  <view class='header'>
+    <header style="padding-top:{{marginTop}};">
+      <view class='back' bindtap='back'>
+        <image src='./image/icon_fanhuixq@3x.png'></image>
+      </view>
+      <span>错误</span>
+    </header>
+  </view>
+  <view class='content'>
+    <!-- list -->
+    <view class='errList'>
+      <a href="javascript:;" wx:for="{{errList}}" wx:key="index" data-errcont='{{item}}' bindtap="errTypeClick">{{item.cont}}</a>
+    </view>
+
+    <!-- fycontent -->
+    <view class='fycontent'>
+      <textarea value="{{submitCont}}" bindinput='changInput' disabled="true"></textarea>
+    </view>
+
+    <!-- btn -->
+    <view class='btn' bindtap='regerror'>
+      提交
+    </view>
+  </view>
+</view>

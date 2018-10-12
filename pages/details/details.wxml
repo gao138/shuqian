@@ -1,0 +1,27 @@
+<view class="container">
+  <view class='header'>
+    <header style="padding-top:{{marginTop}};">
+    </header>
+  </view>
+  <view class='content'>
+    <camera device-position="back" flash="{{flashLamp}}" binderror="error">
+      <cover-view class='wrap'>
+        <cover-view class='window'></cover-view>
+        <cover-image src='{{flashType}}' class='flashBtn' bindtap='flashBtn'></cover-image>
+        <cover-view class='mineBtn' bindtap='toMine'>
+            <cover-image src='./image/icon_wodexq@3x.png'></cover-image>
+        </cover-view>
+      </cover-view>
+    </camera>
+  </view>
+  <view class='footer'>
+    <view bindtap="scanCode">
+      <span></span>
+      <a href="javascript:;">扫码累计</a>
+    </view>
+    <view bindtap="takePhoto">
+      <span></span>
+      <a href="javascript:;">拍照计数</a>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<!--ready.wxml-->
+<view class="container">
+  <view class='header'>
+    <header style="padding-top:{{marginTop}};">
+      <view class='back' bindtap='back'>
+        <image src='./image/icon_fanhuixq@3x.png'></image>
+      </view>
+    </header>
+  </view>
+  <view class='content'>
+    <view class="title">
+      <image src='{{mineTopImg}}'></image>
+      <span>{{mineName}}</span>
+    </view>
+    <view class='list'>
+      <view>
+        <image src='./image/icon_cishuxq@3x.png'></image>
+        <text>今日次数</text>
+        <span class="surplus">剩余{{leftOverNum}}次</span>
+      </view>
+      <navigator url='../errerData/errerData'>
+        <view>
+          <image src='./image/icon_chognzhixq@3x.png'></image>
+          <text>数签历史</text>
+        </view>
+      </navigator>
+      <button bindtap="handleTapShareButton" open-type="share">
+        <view>
+          <image src='./image/icon_fxxq@3x.png'></image>
+          <text>分享</text>
+        </view>
+      </button>
+      <view>
+        <image src='./image/icon_jiaochengxq@3x.png'></image>
+        <text>教程</text>
+      </view>
+    </view>
+  </view>
+</view>
