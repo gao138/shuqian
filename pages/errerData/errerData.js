@@ -202,11 +202,17 @@ Page({
   storeAll: function() {
     this.showitem();
     this.changeData(storeAllData);
+    this.setData({
+      selected: '全部'
+    })
   },
   storeOne: function(event) {
     // console.log(event.currentTarget.dataset.store.store_id);
     this.showitem();
     let storeIdList = event.currentTarget.dataset.store.store_id;
+    this.setData({
+      selected: event.currentTarget.dataset.store.store_name
+    })
     var thisStoreData = [];
     // console.log(storeAllData);
     for (var i = 0; i < storeAllData.length; i++) {
