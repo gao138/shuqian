@@ -13,16 +13,11 @@
   </view>
   <!-- 图表 -->
   <view class='dataWrap'>
-    <view class='box' id='myCanvas'>
-      <navigator url='../history/history'>
-        <view class='fenx'>
-          <image src='./image/icon_lsjlxq@3x.png'></image>
-        </view>
-      </navigator>
-      <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas"></canvas>
-    </view>
-    <view class='allNum'>总根数:
+    <view class='allNum'>总计:
       <span>{{allNum}}</span>
+    </view>
+    <view class='mycanvas'>
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
     </view>
   </view>
   <view class='storeId_list'>

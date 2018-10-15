@@ -1,22 +1,43 @@
 //index.js
 var config = require('../../config')
 var util = require('../../utils/util.js')
-var wxCharts = require('../../utils/wx-chart.js')
 
-var lineChart = null;
+import * as echarts from '../../ec-canvas/echarts';
+
 var storeAllData = null;
+
+let chart = null;
+let xAxisData = null;
+let yAxisMax = null;
+let seriesData = null;
+
+function initChart(canvas, width, height) {
+  chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  });
+  canvas.setChart(chart);
+  
+  return chart;
+}
 Page({
   data: {
     marginTop: wx.getSystemInfoSync().statusBarHeight + 'px',
     open: false,
     selected: '全部',
     down_up: './image/icon_mofenxq@3x.png',
-    storeArr:[],
-    allNum:0
+    storeArr: [],
+    allNum: 0,
+    ec: {
+      onInit: initChart
+    }
   },
   onLoad: function() {
+    
+    
+  },
+  onReady:function(){
     this.getstore();
-    // this.gethisList();
   },
   back: function() {
     wx.navigateBack({
@@ -48,9 +69,9 @@ Page({
         'token': wx.getStorageSync("token")
       },
       success: function(res) {
-        if (res.data.error_code === 0){
+        if (res.data.error_code === 0) {
           that.setData({
-            storeArr:res.data.list,
+            storeArr: res.data.list,
           })
           storeAllData = res.data.list;
           that.changeData(storeAllData);
@@ -58,8 +79,8 @@ Page({
           wx.navigateTo({
             url: '../login/login',
           })
-        }else{
-          util.showModel('失败',res.data.toString());
+        } else {
+          util.showModel('失败', res.data.toString());
         }
         console.log(res);
       },
@@ -69,7 +90,7 @@ Page({
       }
     })
   },
-  changeData:function(data){
+  changeData: function(data) {
     // console.log(data);
     var chartData = {};
     var severData = [];
@@ -89,66 +110,107 @@ Page({
     chartData.max = Math.max.apply(null, severData);
     this.putDown(chartData);
   },
-  putDown: function (chartData){
-    var windowWidth = '',
-      windowHeight = ''; //定义宽高
-    //创建节点选择器
-    var query = wx.createSelectorQuery();
-    //选择id
-    query.select('#myCanvas').boundingClientRect().exec(function (res) {
-      //res就是 所有标签为mjltest的元素的信息 的数组
-      windowWidth = res[0].width;
-      windowHeight = res[0].height;
-      lineChart = new wxCharts({ //定义一个wxCharts图表实例
-        canvasId: 'lineCanvas', //输入wxml中canvas的id
-        type: 'column', //图标展示的类型有:'line','pie','column','area','ring','radar'
-        categories: chartData.categories, //模拟的x轴横坐标参数
-        animation: true, //是否开启动画
-        legend: false,
-        series: [{
-          name: '数量',
-          color: '#fff',
-          data: chartData.data,
-          format: function (val, name) {
-            return val;
+  putDown: function(chartData) {
+    xAxisData = chartData.categories;
+    yAxisMax = chartData.max * 3 / 2;
+    seriesData = chartData.data;
+    var option = {
+      title: {
+        text: ''
+      },
+      tooltip: {},
+      legend: {
+        show: false
+      },
+      xAxis: {
+        data: xAxisData,
+        axisLine: {
+          lineStyle: {
+            color: '#03aaf8',
+            width: 3
           }
-        }],
-        xAxis: { //是否隐藏x轴分割线
-          // ddisableGrid: false,
-          type: 'calibration',
-          gridColor: '#7cb5ec'
         },
-        yAxis: { //y轴数据
-          // title: '数值', //标题
-          disabled: true, //不绘制Y轴
-          format: function (val) { //返回数值
-            return val.toFixed(2);
+        axisLabel:{
+          color:'black'
+        }
+      },
+      yAxis: {
+        min: 0,
+        max: yAxisMax,
+        splitLine: {
+          show: false
+        },
+        axisLine: {
+          lineStyle: {
+            color: '#03aaf8',
+            width: 3
+          }
+        },
+        axisLabel: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        }
+      },
+      series: [{
+        name: '',
+        type: 'bar',
+        barWidth: 20,
+        data: seriesData,
+        itemStyle: {
+          normal: {
+            barBorderRadius: [10, 10, 0, 0],
+            label: {
+              show: true, //开启显示
+              position: 'top', //在上方显示
+              textStyle: { //数值样式
+                color: '#2f2f2f',
+                fontSize: 16
+              }
+            },
+            color: new echarts.graphic.LinearGradient(
+              0, 0, 0, 1, [{
+                offset: 0,
+                color: '#07aaeb'
+              },
+              {
+                offset: 1,
+                color: '#21ce98'
+              }
+              ]
+            )
           },
-          min: 0, //最小值
-          max: chartData.max * 3 / 2, //最大值
-          gridColor: '#6fc4fb', //Y轴网格颜色                 
-        },
-        width: windowWidth, //图表展示内容宽度
-        height: windowHeight, //图表展示内容高度
-        dataLabel: true, //是否在图表上直接显示数据
-        dataPointShape: true, //是否在图标上显示数据点标志
-      });
-      lineChart.config.padding = 7;
-      lineChart.config.dataPointShape = ["circle", "diamond", "triangle", "rect"];
-    });
+          emphasis: {
+            color: new echarts.graphic.LinearGradient(
+              0, 0, 0, 1, [{
+                offset: 0,
+                color: '#2FDECA'
+              },
+              {
+                offset: 1,
+                color: '#2FDE80'
+              }
+              ]
+            )
+          }
+        }
+      }]
+    };
+    chart.setOption(option);
   },
-  storeAll:function(){
+  storeAll: function() {
     this.showitem();
     this.changeData(storeAllData);
   },
-  storeOne: function (event){
+  storeOne: function(event) {
     // console.log(event.currentTarget.dataset.store.store_id);
     this.showitem();
     let storeIdList = event.currentTarget.dataset.store.store_id;
     var thisStoreData = [];
     // console.log(storeAllData);
     for (var i = 0; i < storeAllData.length; i++) {
-      if (storeIdList === storeAllData[i].store_id){
+      if (storeIdList === storeAllData[i].store_id) {
         thisStoreData[0] = storeAllData[i];
       }
     }

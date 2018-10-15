@@ -49,11 +49,9 @@ page {
 
 .container .dataWrap {
   background: #fff;
-  width: 672rpx;
-  height: 452rpx;
-  border-radius: 14rpx;
+  width: 100%;
+  height: 680rpx;
   margin: 0 auto;
-  margin-top: 30rpx;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -70,48 +68,46 @@ page {
   height: 40rpx;
 }
 
-.container .dataWrap view {
-  flex: 1;
-}
-
-.container .dataWrap .box {
-  background: #6fc4fb;
-  margin: 33rpx auto 0;
-}
-
-.container .dataWrap .box canvas {
-  width: 612rpx;
-  height: 328rpx;
-}
-
 .container .dataWrap .allNum {
-  padding: 30rpx 0;
+  width: 100%;
+  padding-top: 54rpx;
   text-indent: 28rpx;
   font-size: 28rpx;
+  line-height: 77rpx;
+  height: 77rpx;
+  color: #000;
+  text-align: right;
 }
-
-.container .dataWrap .allNum span {
+.container .dataWrap .allNum span{
   color: #fc5c1e;
-  vertical-align: baseline;
+  padding-right: 40rpx;
 }
-
+.container .dataWrap  .mycanvas{
+  width: 100%;
+  height: 549rpx;
+  overflow: hidden;
+}
+.container .dataWrap  .mycanvas ec-canvas {
+  width: 100%;
+  height: 100%;
+}
 .container .storeId_list{
   background: #fff;
   width: 672rpx;
-  height: 452rpx;
+  height: 300rpx;
   margin: 0 auto;
-  margin-top: 30rpx;
 }
 .container .storeId_list .page_bd{
-   
+   overflow: hidden;
+   margin-top: 60rpx;
 }
 .container .storeId_list .body_head{
-    line-height: 70rpx;
-    height: 70rpx;
+    height: 50rpx;
     color: #333;
     font-size: 26rpx;
     padding: 0 20rpx;
     display: flex;
+    overflow: hidden;
     align-items: center;
     justify-content: space-between;
 }
@@ -119,17 +115,17 @@ page {
   width: 16rpx;
   height: 12rpx;
 }
+.container .storeId_list .list{
+  max-height: 250rpx;
+  overflow-y: auto;
+}
 .container .storeId_list .display_show{
     display: block;
-    line-height: 70rpx;
-    height: 70rpx;
+    line-height: 50rpx;
+    height: 50rpx;
     color: #333;
     font-size: 26rpx;
     padding: 0 20rpx;
-}
-.container .storeId_list .list{
-  height: 372rpx;
-  overflow-y: auto;
 }
 .container .storeId_list .display_show:hover{
   background: #fc5c1e;
