@@ -35,10 +35,10 @@ Page({
   },
   onLoad: function() {
     
-    
   },
   onReady:function(){
     this.getstore();
+    
   },
   back: function() {
     wx.navigateBack({
@@ -71,7 +71,6 @@ Page({
       },
       success: function(res) {
         if (res.data.error_code === 0) {
-          chart.hideLoading();
           that.setData({
             storeArr: res.data.list,
           })
@@ -114,27 +113,16 @@ Page({
   putDown: function(chartData) {
     xAxisData = chartData.categories;
     seriesData = chartData.data;
-    xAxisData = ["啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4", "啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4", "啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4", "啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4"]
-    seriesData = [29, 14, 7, 2, 1, 57, 9, 32, 78, 29, 14, 7, 2, 1, 57, 9, 32, 78, 29, 14, 7, 2, 1, 57, 9, 32, 78, 29, 14, 7, 2, 1, 57, 9, 32, 78]
     console.log(chartData);
     var option = {
       title: {
         text: ''
       },
-      tooltip: {
-        trigger: 'item'//是否显示提示框组件，包括提示框浮层和
-      },
+      tooltip: {},
       legend: {
-        
+        show: false
       },
-      // grid: {
-      //   top: '12%',
-      //   left: '1%',
-      //   right: '10%',
-      //   containLabel: true
-      // },
       xAxis: {
-        type: 'category',
         data: xAxisData,
         axisLine: {
           lineStyle: {
@@ -142,20 +130,17 @@ Page({
             width: 3
           }
         },
-        axisLabel:{
-          color:'black'
+        axisTick:{
+          show:false
         },
-        boundaryGap:true,
         axisLabel: {
+          color: 'black',
           interval: 0,
-          // rotate: "45"
         }
       },
       yAxis: {
-        type:'value',
-        max:function(value){
-          return Math.round(value.max * 1.5);
-        },
+        min: 0,
+        max: yAxisMax,
         splitLine: {
           show: false
         },
@@ -174,17 +159,17 @@ Page({
       },
       dataZoom: [
         {
-          id: 'dataZoomX',
           type: 'slider',
           show: true,
-          start: 10,
-          end: 20,
+          start: 0,
+          end: 1,
           handleSize: 8
         }
       ],
       series: [{
+        name: '',
         type: 'bar',
-        barWidth: 20,//柱状宽
+        barWidth: 20,
         data: seriesData,
         itemStyle: {
           normal: {
@@ -225,6 +210,7 @@ Page({
         }
       }]
     };
+    
     chart.setOption(option);
   },
   storeAll: function() {
