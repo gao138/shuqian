@@ -54,6 +54,7 @@
   font-weight: bold;
   font-size: 48rpx;
   margin-top: 124rpx;
+  min-height: 64rpx;
 }
 .container .content .boxImg{
   width: 684rpx;

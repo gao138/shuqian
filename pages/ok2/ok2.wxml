@@ -12,7 +12,7 @@
   </view>
   <view class='content'>
     <view class='store'>{{storeName}}</view>
-    <view class='allNum'>{{allNum}}根</view>
+    <view class='allNum'>{{allNum}}</view>
     <view class='boxImg'>
       <image src="{{src}}" mode='aspectFill'></image>
     </view>

@@ -3,7 +3,7 @@ var config = require('../../config')
 var util = require('../../utils/util.js')
 Page({
   data: {
-    allNum: 0,
+    allNum: '',
     src: null,
     storeName:'',
     marginTop: wx.getSystemInfoSync().statusBarHeight + 'px'
@@ -28,7 +28,7 @@ Page({
       url: '../errer/errer'
     })
   },
-  scanning: function (data) {
+  scanning: function (data) {  
     const that = this;
     wx.request({
       url: config.service.scanning,
@@ -47,17 +47,18 @@ Page({
           util.showModel('累计成功');
           that.setData({
             storeName: res.data.store_name,
-            allNum: res.data.count,
+            allNum: res.data.count + '根',
             src: 'data:image/png;base64,' + res.data.image
           })
         } else if (res.data.error_code === 1005) {
           wx.navigateTo({
             url: '../login/login',
           })
+        } else if (res.data.error_code === 2001) {
+          util.showModel('失败', '此二维码已被扫描');
         }else{
-          util.showModel('失败', res.data.error_code.toString());
+          util.showModel('失败', res.data.error_code.toString()); 
         }
-        
       },
       fail: function (err) {
         console.log(err);

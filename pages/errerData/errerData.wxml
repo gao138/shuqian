@@ -7,7 +7,7 @@
         <view class='back' bindtap='back'>
           <image src='./image/icon_fanhuixq@3x.png'></image>
         </view>
-        <span>报表</span>
+        <span>数签历史</span>
       </header>
     </view>
   </view>

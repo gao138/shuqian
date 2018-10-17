@@ -20,6 +20,7 @@ function initChart(canvas, width, height) {
   
   return chart;
 }
+
 Page({
   data: {
     marginTop: wx.getSystemInfoSync().statusBarHeight + 'px',
@@ -70,6 +71,7 @@ Page({
       },
       success: function(res) {
         if (res.data.error_code === 0) {
+          chart.hideLoading();
           that.setData({
             storeArr: res.data.list,
           })
@@ -107,22 +109,32 @@ Page({
     chartData.data = severData;
     chartData.allNum = allNum;
     chartData.categories = categories;
-    chartData.max = Math.max.apply(null, severData);
     this.putDown(chartData);
   },
   putDown: function(chartData) {
     xAxisData = chartData.categories;
-    yAxisMax = chartData.max * 3 / 2;
     seriesData = chartData.data;
+    xAxisData = ["啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4", "啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4", "啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4", "啦啦啦二店", "啦啦啦一店", "高龙天旗舰店", "小黄鸭旗舰店", "官方账号店", "官方账号1", "官方账号店2", "官方账号店3", "官方账号店4"]
+    seriesData = [29, 14, 7, 2, 1, 57, 9, 32, 78, 29, 14, 7, 2, 1, 57, 9, 32, 78, 29, 14, 7, 2, 1, 57, 9, 32, 78, 29, 14, 7, 2, 1, 57, 9, 32, 78]
+    console.log(chartData);
     var option = {
       title: {
         text: ''
       },
-      tooltip: {},
-      legend: {
-        show: false
+      tooltip: {
+        trigger: 'item'//是否显示提示框组件，包括提示框浮层和
       },
+      legend: {
+        
+      },
+      // grid: {
+      //   top: '12%',
+      //   left: '1%',
+      //   right: '10%',
+      //   containLabel: true
+      // },
       xAxis: {
+        type: 'category',
         data: xAxisData,
         axisLine: {
           lineStyle: {
@@ -132,11 +144,18 @@ Page({
         },
         axisLabel:{
           color:'black'
+        },
+        boundaryGap:true,
+        axisLabel: {
+          interval: 0,
+          // rotate: "45"
         }
       },
       yAxis: {
-        min: 0,
-        max: yAxisMax,
+        type:'value',
+        max:function(value){
+          return Math.round(value.max * 1.5);
+        },
         splitLine: {
           show: false
         },
@@ -153,10 +172,19 @@ Page({
           show: false
         }
       },
+      dataZoom: [
+        {
+          id: 'dataZoomX',
+          type: 'slider',
+          show: true,
+          start: 10,
+          end: 20,
+          handleSize: 8
+        }
+      ],
       series: [{
-        name: '',
         type: 'bar',
-        barWidth: 20,
+        barWidth: 20,//柱状宽
         data: seriesData,
         itemStyle: {
           normal: {
