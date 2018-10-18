@@ -91,7 +91,7 @@ Page({
       }
     })
   },
-  changeData: function(data) {
+  changeData: function (data, types) {
     // console.log(data);
     var chartData = {};
     var severData = [];
@@ -108,9 +108,10 @@ Page({
     chartData.data = severData;
     chartData.allNum = allNum;
     chartData.categories = categories;
-    this.putDown(chartData);
+    this.putDown(chartData, types);
   },
-  putDown: function(chartData) {
+  putDown: function(chartData,types) {
+    console.log(types + 'ddddddddddddddddddd');
     xAxisData = chartData.categories;
     seriesData = chartData.data;
     console.log(chartData);
@@ -136,6 +137,16 @@ Page({
         axisLabel: {
           color: 'black',
           interval: 0,
+          fontSize:12,
+          formatter: function (value) {
+            if(types === '0'){
+              return value;
+            }else{
+              if (value.length > 4) {
+                return value.slice(0, 3) + '\n' + value.slice(3);
+              }
+            }
+          }
         }
       },
       yAxis: {
@@ -234,6 +245,6 @@ Page({
         thisStoreData[0] = storeAllData[i];
       }
     }
-    this.changeData(thisStoreData);
+    this.changeData(thisStoreData,'0');
   },
 })
