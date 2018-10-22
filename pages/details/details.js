@@ -11,8 +11,7 @@ Page({
     leftOverNum: 0
   },
   onLoad: function(options) {
-    // 打开摄像头
-    this.ctx = wx.createCameraContext();
+    
   },
   onShow: function() {
 
@@ -27,6 +26,8 @@ Page({
   },
   // 拍照
   takePhoto() {
+    // 打开摄像头
+    this.ctx = wx.createCameraContext();
     this.ctx.takePhoto({
       quality: 'high',
       success: (res) => {

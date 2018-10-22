@@ -19,7 +19,7 @@ const formatNumber = n => {
 var showBusy = text => wx.showToast({
     title: text,
     icon: 'loading',
-    duration: 15000
+    duration: 150000
 })
 
 // 显示成功提示

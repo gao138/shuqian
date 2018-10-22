@@ -19,5 +19,8 @@
     "navigationBarTitleText": "首页",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
+  },
+  "networkTimeout": {
+    "request": 10000
   }
 }

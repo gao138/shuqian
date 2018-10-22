@@ -46,6 +46,11 @@ Page({
       },
       fail:function(err){
         console.log(err);
+        if (err.errMsg === "request:fail timeout") {
+          util.showModel('失败', '请求超时,请稍后再试');
+        } else {
+          util.showModel('失败', JSON.stringify(err));
+        } 
       }
     })
   }

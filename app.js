@@ -34,11 +34,20 @@ App({
             }
           },
           fail: function (err) {
-            util.showModel('登录失败', JSON.stringify(err));
+            console.log(err);
+            if (err.errMsg === "request:fail timeout"){
+              util.showModel('登录失败', '请求超时,请稍后再试');
+            }else{
+              util.showModel('登录失败', JSON.stringify(err));
+            }           
           }
         })
-      })
-    })
+      }).catch(function (err) {
+        util.showModel('登录失败', '');
+      });
+    }).catch(function (err) {
+      util.showModel('登录失败', '');
+    });
   },
   onShow: function (options) {
     // Do something when show.
