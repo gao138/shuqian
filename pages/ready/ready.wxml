@@ -13,7 +13,7 @@
       </view>
     </view>
     <view class='btns'>
-      <text bindtap='btnYes'>确认</text>
+      <text bindtap='btnYes'>{{yes}}</text>
       <text bindtap='btnNo'>取消</text>
     </view>
   </view>

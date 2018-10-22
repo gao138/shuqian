@@ -4,7 +4,8 @@ var util = require('../../utils/util.js')
 Page({
   data: {
     marginTop: wx.getSystemInfoSync().statusBarHeight + 'px',
-    isok:false
+    isok:false,
+    yes:'确定'
   },
   onLoad: function(options) {
     const ctx = wx.createCanvasContext('cover-preview');
@@ -82,6 +83,7 @@ Page({
         if (7 - res.data.day_times <= 0) {
           console.log(res)
           this.setData({
+            yes: '重试',
             isok: false
           });
           util.showModel('超每日次数', '')
@@ -91,10 +93,14 @@ Page({
       }     
     }).catch(err => {
       console.log(err);
+      this.setData({
+        yes: '重试',
+        isok: false
+      });
       if (err.errMsg === "request:fail timeout") {
         util.showModel('上传图片失败', '请求超时,请稍后再试');
       } else {
-        util.showModel('上传图片失败', JSON.stringify(err));
+        util.showModel('上传图片失败', '连接错误，请稍后重试');
       } 
       
     })
@@ -121,7 +127,8 @@ Page({
           console.log("success");
           console.log(res.data);
           that.setData({
-            isok: false
+            isok: false,
+            yes: '确定'
           });
           res.data.image = encodeURIComponent(res.data.image)
           const dataStr = JSON.stringify(res.data);
@@ -132,22 +139,25 @@ Page({
           wx.navigateTo({
             url: '../login/login',
           })
-        }
-        else if (res.data.error_code === 1007) {
-          util.showModel('上传图片失败', '内部错误')
-        } else if (res.data.error_code === 1701) {
-          util.showModel('上传图片失败', '内部算法错误')
         } else {
+          that.setData({
+            yes: '重试',
+            isok: false,
+          });
           util.showModel('上传图片失败', res.data.error_code.toString())
           console.log("fail");
           console.log(res.data);
         }
       },
       fail: function (err) {
+        that.setData({
+          yes: '重试',
+          isok: false,
+        });
         if (err.errMsg === "request:fail timeout") {
           util.showModel('上传图片失败', '请求超时,请稍后再试');
         } else {
-          util.showModel('上传图片失败', JSON.stringify(err));
+          util.showModel('上传图片失败', '连接错误，请稍后重试');
         } 
         console.log(err);
       }

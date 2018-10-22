@@ -45,7 +45,7 @@ Page({
               if (err.errMsg === "request:fail timeout") {
                 util.showModel('登录失败', '请求超时,请稍后再试');
               } else {
-                util.showModel('登录失败', JSON.stringify(err));
+                util.showModel('登录失败', '连接错误，请稍后重试');
               } 
             }
           })
