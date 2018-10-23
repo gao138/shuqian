@@ -72,6 +72,7 @@ Page({
     })
   },
   btnYes: function() {
+    util.showBusy('正在上传');
     if(this.data.isok){
         return;
     };
@@ -82,6 +83,7 @@ Page({
       if (res.data.error_code === 0){
         if (7 - res.data.day_times <= 0) {
           console.log(res)
+          wx.hideToast();
           this.setData({
             yes: '重试',
             isok: false
@@ -106,7 +108,6 @@ Page({
     })
   },
   up:function(){
-    util.showBusy('正在上传')
     var that = this;
     // 上传图片
     wx.request({
@@ -126,6 +127,7 @@ Page({
         if (res.data.error_code === 0) {
           console.log("success");
           console.log(res.data);
+          wx.hideToast();
           that.setData({
             isok: false,
             yes: '确定'
