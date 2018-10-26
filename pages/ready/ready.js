@@ -4,8 +4,8 @@ var util = require('../../utils/util.js')
 Page({
   data: {
     marginTop: wx.getSystemInfoSync().statusBarHeight + 'px',
-    isok:false,
-    yes:'确定'
+    isok: false,
+    yes: '确定'
   },
   onLoad: function(options) {
     const ctx = wx.createCanvasContext('cover-preview');
@@ -22,7 +22,7 @@ Page({
           let scalex = imageWidth / wx.getSystemInfoSync().windowWidth;
           let sx = (imageWidth - rect.width * scalex) / 2;
           let sy = (imageHeght - rect.height * scalex) / 2;
-          ctx.drawImage(res.path, sx, sy, rect.width * scalex, rect.height * scalex,0,0,684,684);
+          ctx.drawImage(res.path, sx, sy, rect.width * scalex, rect.height * scalex, 0, 0, 684, 684);
           ctx.beginPath();
           // ctx.arc(684 / 2, 684 / 2, rect.width * scalex-32, 0, 2 * Math.PI);
           // ctx.setFillStyle('rgba(0,0,0,0.1)');
@@ -31,7 +31,7 @@ Page({
             wx.canvasToTempFilePath({
               quality: 1,
               canvasId: 'cover-preview',
-              fileType:'jpg',
+              fileType: 'jpg',
               destWidth: 684,
               destHeight: 684,
               success: function(res) {
@@ -51,8 +51,8 @@ Page({
         }).exec();
       })
   },
-  getTimesPromise: function () {
-    return new Promise(function (resolve, reject) {
+  getTimesPromise: function() {
+    return new Promise(function(resolve, reject) {
       wx.request({
         url: config.service.getTimes,
         method: 'GET',
@@ -60,11 +60,11 @@ Page({
           'content-type': 'application/x-www-form-urlencoded',
           'token': wx.getStorageSync("token")
         },
-        success: function (res) {
-          console.log(res);   
-          resolve(res);    
+        success: function(res) {
+          console.log(res);
+          resolve(res);
         },
-        fail: function (err) {
+        fail: function(err) {
           console.log(err);
           reject(err);
         }
@@ -72,42 +72,59 @@ Page({
     })
   },
   btnYes: function() {
-    util.showBusy('正在上传');
-    if(this.data.isok){
-        return;
-    };
-    this.setData({
-      isok:true
-    });
-    this.getTimesPromise().then(res => {
-      if (res.data.error_code === 0){
-        if (7 - res.data.day_times <= 0) {
-          console.log(res)
-          wx.hideToast();
-          this.setData({
-            yes: '重试',
-            isok: false
-          });
-          util.showModel('超每日次数', '')
-        } else{
-          this.up();
-        }
-      }     
-    }).catch(err => {
-      console.log(err);
+    console.log(this.data.isok);
+    if (!this.data.isok) {
+      util.showBusy('正在上传');
       this.setData({
-        yes: '重试',
-        isok: false
+        isok: true
       });
-      if (err.errMsg === "request:fail timeout") {
-        util.showModel('上传图片失败', '请求超时,请稍后再试');
-      } else {
-        util.showModel('上传图片失败', '连接错误，请稍后重试');
-      } 
-      
-    })
+      this.getTimesPromise().then(res => {
+        if (res.data.error_code === 0) {
+          if (7 - res.data.day_times <= 0) {
+            console.log(res)
+            wx.hideToast();
+            util.showModel('超每日次数', '')
+          } else {
+            this.up();
+          }
+        }
+      }).catch(err => {
+        console.log(err);
+        this.setData({
+          yes: '重试',
+          isok: false
+        });
+        if (err.errMsg === "request:fail timeout") {
+          util.showModel('上传图片失败', '请求超时,请稍后再试');
+        } else {
+          util.showModel('上传图片失败', '连接错误，请稍后重试');
+        }
+
+      })
+    } else {
+      this.getTimesPromise().then(res => {
+        if (res.data.error_code === 0) {
+          if (7 - res.data.day_times <= 0) {
+            console.log(res)
+            util.showModel('超每日次数', '')
+          }
+        }
+      }).catch(err => {
+        console.log(err);
+        this.setData({
+          yes: '重试',
+          isok: false
+        });
+        if (err.errMsg === "request:fail timeout") {
+          util.showModel('上传图片失败', '请求超时,请稍后再试');
+        } else {
+          util.showModel('上传图片失败', '连接错误，请稍后重试');
+        }
+
+      })
+    }
   },
-  up:function(){
+  up: function() {
     var that = this;
     // 上传图片
     wx.request({
@@ -121,7 +138,7 @@ Page({
         start_date: Math.round(new Date().getTime() / 1000),
         image: this.data.srcBase64
       },
-      success: function (res) {
+      success: function(res) {
         // util.showSuccess('上传图片成功')
         wx.setStorageSync('result', JSON.stringify(res.data));
         if (res.data.error_code === 0) {
@@ -151,7 +168,7 @@ Page({
           console.log(res.data);
         }
       },
-      fail: function (err) {
+      fail: function(err) {
         that.setData({
           yes: '重试',
           isok: false,
@@ -160,7 +177,7 @@ Page({
           util.showModel('上传图片失败', '请求超时,请稍后再试');
         } else {
           util.showModel('上传图片失败', '连接错误，请稍后重试');
-        } 
+        }
         console.log(err);
       }
     })
